@@ -4,7 +4,7 @@ export default function Footer() {
       <div className="container">
         <div className="footer-content">
           <a href="#" className="logo">
-            <img src="/imgs/logo.png" alt="Shine Bros" className="logo-img" />
+            <img src={`${import.meta.env.BASE_URL}imgs/logo.png`} alt="Shine Bros" className="logo-img" />
           </a>
           <nav className="footer-nav">
             <a href="#services">Services</a>

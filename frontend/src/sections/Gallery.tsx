@@ -11,11 +11,11 @@ export default function Gallery() {
           <div className="gallery-item">
             <div className="before-after-slider">
               <div className="before-image">
-                <img src="/imgs/before1.jpeg" alt="Before cleaning" />
+                <img src={`${import.meta.env.BASE_URL}imgs/before1.jpeg`} alt="Before cleaning" />
                 <span className="image-label">Before</span>
               </div>
               <div className="after-image">
-                <img src="/imgs/after1.jpeg" alt="After cleaning" />
+                <img src={`${import.meta.env.BASE_URL}imgs/after1.jpeg`} alt="After cleaning" />
                 <span className="image-label">After</span>
               </div>
             </div>
@@ -23,11 +23,11 @@ export default function Gallery() {
           <div className="gallery-item">
             <div className="before-after-slider">
               <div className="before-image">
-                <img src="/imgs/before2.jpeg" alt="Before cleaning" />
+                <img src={`${import.meta.env.BASE_URL}imgs/before2.jpeg`} alt="Before cleaning" />
                 <span className="image-label">Before</span>
               </div>
               <div className="after-image">
-                <img src="/imgs/after2.jpeg" alt="After cleaning" />
+                <img src={`${import.meta.env.BASE_URL}imgs/after2.jpeg`} alt="After cleaning" />
                 <span className="image-label">After</span>
               </div>
             </div>
@@ -35,11 +35,11 @@ export default function Gallery() {
           <div className="gallery-item">
             <div className="before-after-slider">
               <div className="before-image">
-                <img src="/imgs/before3.jpeg" alt="Before cleaning" />
+                <img src={`${import.meta.env.BASE_URL}imgs/before3.jpeg`} alt="Before cleaning" />
                 <span className="image-label">Before</span>
               </div>
               <div className="after-image">
-                <img src="/imgs/after3.jpeg" alt="After cleaning" />
+                <img src={`${import.meta.env.BASE_URL}imgs/after3.jpeg`} alt="After cleaning" />
                 <span className="image-label">After</span>
               </div>
             </div>

@@ -15,7 +15,7 @@ export default function Header() {
           <a href="#our-work" className="nav-link">Our Work</a>
         </nav>
         <a href="#" className="logo">
-          <img src="/imgs/logo.png" alt="Shine Bros" className="logo-img" />
+          <img src={`${import.meta.env.BASE_URL}imgs/logo.png`} alt="Shine Bros" className="logo-img" />
         </a>
         <nav className="nav nav-right">
           <a href="#about" className="nav-link">About</a>

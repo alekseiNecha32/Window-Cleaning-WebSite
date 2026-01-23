@@ -8,7 +8,7 @@ export default function Hero({ onFormSuccess }: HeroProps) {
   return (
     <section className="hero-combined" id="quote">
       <div className="hero-image-side">
-        <img src="/imgs/us.jpg" alt="Shine Bros Team" />
+        <img src={`${import.meta.env.BASE_URL}imgs/us.jpg`} alt="Shine Bros Team" />
       </div>
       <div className="hero-content-side">
         <div className="hero-text-section">
