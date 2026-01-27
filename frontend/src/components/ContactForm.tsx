@@ -1,5 +1,9 @@
 import { useState, FormEvent } from 'react';
-import { submitContact } from '../api/client';
+import emailjs from '@emailjs/browser';
+
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
 interface ContactFormProps {
   onSuccess: () => void;
@@ -22,12 +26,22 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
     setLoading(true);
 
     try {
-      await submitContact(formData);
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          title: 'New Contact Message',
+          name: formData.name,
+          email: formData.email,
+          message: `New Contact Message\n\nFrom: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`,
+          time: new Date().toLocaleString(),
+        },
+        EMAILJS_PUBLIC_KEY
+      );
       onSuccess();
       setFormData({ name: '', email: '', message: '' });
     } catch (error) {
-      console.error('Error submitting contact:', error);
-      onSuccess(); // Still show success to user
+      console.error('Error sending email:', error);
     } finally {
       setLoading(false);
     }
