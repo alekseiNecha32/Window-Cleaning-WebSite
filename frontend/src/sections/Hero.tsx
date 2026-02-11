@@ -27,7 +27,8 @@ export default function Hero({ onFormSuccess }: HeroProps) {
             </svg>
             Blue Ash/Montgomery
           </p>
-          <p className="hero-landing-description">Crystal clear windows and pristine surfaces. We bring the shine to your home and business.</p>
+          <p className="hero-landing-description">Our team is excited for 2026 as Shine Bros continues to grow and build something special as we set new standards in the window cleaning industry. We truly value every customer and we are grateful for the opportunity to make your house look beautiful.
+</p>
           <div className="hero-landing-buttons">
             <a href="#services" className="btn btn-outline">Our Services</a>
           </div>

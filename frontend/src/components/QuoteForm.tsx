@@ -1,6 +1,5 @@
 import { useState, FormEvent } from 'react';
 import { submitQuote } from '../api/client';
-import ImageUpload from './ImageUpload';
 
 interface QuoteFormProps {
   onSuccess: () => void;
@@ -8,12 +7,12 @@ interface QuoteFormProps {
 
 export default function QuoteForm({ onSuccess }: QuoteFormProps) {
   const [loading, setLoading] = useState(false);
-  const [images, setImages] = useState<File[]>([]);
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
     email: '',
     location: '',
+    zipcode: '',
     serviceType: '',
     message: ''
   });
@@ -27,13 +26,9 @@ export default function QuoteForm({ onSuccess }: QuoteFormProps) {
     setLoading(true);
 
     try {
-      await submitQuote({
-        ...formData,
-        images
-      });
+      await submitQuote(formData);
       onSuccess();
-      setFormData({ firstName: '', lastName: '', email: '', location: '', serviceType: '', message: '' });
-      setImages([]);
+      setFormData({ firstName: '', lastName: '', email: '', location: '', zipcode: '', serviceType: '', message: '' });
     } catch (error) {
       console.error('Error submitting quote:', error);
       onSuccess(); // Still show success to user
@@ -102,21 +97,40 @@ export default function QuoteForm({ onSuccess }: QuoteFormProps) {
             />
           </div>
         </div>
-        <div className="form-group-blue">
-          <label>Location</label>
-          <div className="input-with-icon">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M21 10C21 17 12 23 12 23C12 23 3 17 3 10C3 7.61305 3.94821 5.32387 5.63604 3.63604C7.32387 1.94821 9.61305 1 12 1C14.3869 1 16.6761 1.94821 18.364 3.63604C20.0518 5.32387 21 7.61305 21 10Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              <circle cx="12" cy="10" r="3" stroke="currentColor" strokeWidth="2"/>
-            </svg>
-            <input
-              type="text"
-              name="location"
-              placeholder="Enter your city or address"
-              value={formData.location}
-              onChange={handleChange}
-              required
-            />
+        <div className="form-row-2-blue">
+          <div className="form-group-blue">
+            <label>Address</label>
+            <div className="input-with-icon">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21 10C21 17 12 23 12 23C12 23 3 17 3 10C3 7.61305 3.94821 5.32387 5.63604 3.63604C7.32387 1.94821 9.61305 1 12 1C14.3869 1 16.6761 1.94821 18.364 3.63604C20.0518 5.32387 21 7.61305 21 10Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <circle cx="12" cy="10" r="3" stroke="currentColor" strokeWidth="2"/>
+              </svg>
+              <input
+                type="text"
+                name="location"
+                placeholder="Enter your address"
+                value={formData.location}
+                onChange={handleChange}
+                required
+              />
+            </div>
+          </div>
+          <div className="form-group-blue">
+            <label>Zipcode</label>
+            <div className="input-with-icon">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21 10C21 17 12 23 12 23C12 23 3 17 3 10C3 7.61305 3.94821 5.32387 5.63604 3.63604C7.32387 1.94821 9.61305 1 12 1C14.3869 1 16.6761 1.94821 18.364 3.63604C20.0518 5.32387 21 7.61305 21 10Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <circle cx="12" cy="10" r="3" stroke="currentColor" strokeWidth="2"/>
+              </svg>
+              <input
+                type="text"
+                name="zipcode"
+                placeholder="12345"
+                value={formData.zipcode}
+                onChange={handleChange}
+                required
+              />
+            </div>
           </div>
         </div>
         <div className="form-group-blue">
@@ -154,7 +168,6 @@ export default function QuoteForm({ onSuccess }: QuoteFormProps) {
             />
           </div>
         </div>
-        <ImageUpload images={images} onImagesChange={setImages} />
         <button type="submit" className="btn-submit-blue" disabled={loading}>
           {loading ? (
             <span>Sending...</span>
