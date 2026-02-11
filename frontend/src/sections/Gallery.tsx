@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 
  const beforeAfterImages = [
   { before: 'before1.jpeg', after: 'after1.jpeg' },
@@ -21,21 +21,35 @@ export default function Gallery() {
   const [beforeAfterIndex, setBeforeAfterIndex] = useState(0);
   const [workIndex, setWorkIndex] = useState(0);
   const [viewMode, setViewMode] = useState<ViewMode>('beforeAfter');
+  const [flowing, setFlowing] = useState(false);
+
+  const flowTransition = useCallback((update: () => void) => {
+    if (flowing) return;
+    setFlowing(true);
+    setTimeout(() => {
+      update();
+      setTimeout(() => setFlowing(false), 50);
+    }, 400);
+  }, [flowing]);
 
   const handlePrev = () => {
-    if (viewMode === 'beforeAfter') {
-      setBeforeAfterIndex((prev) => (prev === 0 ? beforeAfterImages.length - 1 : prev - 1));
-    } else {
-      setWorkIndex((prev) => (prev === 0 ? workImages.length - 1 : prev - 1));
-    }
+    flowTransition(() => {
+      if (viewMode === 'beforeAfter') {
+        setBeforeAfterIndex((prev) => (prev === 0 ? beforeAfterImages.length - 1 : prev - 1));
+      } else {
+        setWorkIndex((prev) => (prev === 0 ? workImages.length - 1 : prev - 1));
+      }
+    });
   };
 
   const handleNext = () => {
-    if (viewMode === 'beforeAfter') {
-      setBeforeAfterIndex((prev) => (prev === beforeAfterImages.length - 1 ? 0 : prev + 1));
-    } else {
-      setWorkIndex((prev) => (prev === workImages.length - 1 ? 0 : prev + 1));
-    }
+    flowTransition(() => {
+      if (viewMode === 'beforeAfter') {
+        setBeforeAfterIndex((prev) => (prev === beforeAfterImages.length - 1 ? 0 : prev + 1));
+      } else {
+        setWorkIndex((prev) => (prev === workImages.length - 1 ? 0 : prev + 1));
+      }
+    });
   };
 
   const getVisibleImages = () => {
@@ -83,7 +97,7 @@ export default function Gallery() {
             </button>
           </div>
 
-          <div className="carousel-container">
+          <div className={`carousel-container ${flowing ? 'flowing' : ''}`}>
             {viewMode === 'beforeAfter' ? (
               <>
                 <div className="carousel-slide carousel-slide-prev">

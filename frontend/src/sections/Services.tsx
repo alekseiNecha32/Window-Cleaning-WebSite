@@ -18,7 +18,7 @@ export default function Services() {
               </svg>
             </div>
             <h3>Exterior Window Washing</h3>
-            <p>Professional exterior window cleaning that removes dirt, grime, and water spots for a spotless shine.</p>
+            <p>Professional exterior window, sunroom window, roof window cleaning that removes dirt, grime, and water spots for a spotless shine.</p>
           </div>
           <div className="service-card">
             <div className="service-icon">
