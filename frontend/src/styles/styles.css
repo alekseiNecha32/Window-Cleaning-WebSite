@@ -719,6 +719,22 @@ img {
     line-height: 1.7;
 }
 
+.extra-service-banner {
+    margin-top: 2.5rem;
+    text-align: center;
+    padding: 1.25rem 2rem;
+    background: var(--gray-50);
+    border-radius: 0.75rem;
+    border: 1px solid var(--gray-200);
+}
+
+.extra-service-banner p {
+    color: var(--gray-600);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin: 0;
+}
+
 /* Our Work / Gallery Section */
 .our-work {
     padding: 5rem 0;

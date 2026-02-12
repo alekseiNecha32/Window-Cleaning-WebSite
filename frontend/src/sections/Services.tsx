@@ -18,7 +18,7 @@ export default function Services() {
               </svg>
             </div>
             <h3>Exterior Window Washing</h3>
-            <p>Professional exterior window, sunroom window, roof window cleaning that removes dirt, grime, and water spots for a spotless shine.</p>
+            <p>Professional cleaning for exterior, sunroom, and roof windows that removes dirt, grime, and water spots for a spotless shine.</p>
           </div>
           <div className="service-card">
             <div className="service-icon">
@@ -55,6 +55,9 @@ export default function Services() {
             <h3>Pressure Washing</h3>
             <p>High-powered pressure washing for driveways, sidewalks, decks, and exterior surfaces.</p>
           </div>
+        </div>
+        <div className="extra-service-banner">
+          <p><strong>Screen Cleaning</strong> — Extra service at $4.50 per screen. A thorough deep clean that removes built-up dust, pollen, and debris from your screens, restoring airflow and clarity.</p>
         </div>
       </div>
     </section>
