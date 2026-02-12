@@ -1,7 +1,7 @@
 import os
 import uuid
 from datetime import datetime
-from typing import List, Optional
+from typing import Optional
 from dotenv import load_dotenv
 from supabase import create_client, Client
 
@@ -52,9 +52,9 @@ async def save_quote(
     last_name: str,
     email: str,
     location: str,
+    zipcode: str,
     service_type: str,
     message: Optional[str],
-    image_urls: List[str]
 ) -> bool:
     """Save quote to Supabase database."""
     supabase = get_supabase()
@@ -68,9 +68,9 @@ async def save_quote(
             "last_name": last_name,
             "email": email,
             "location": location,
+            "zipcode": zipcode,
             "service_type": service_type,
             "message": message,
-            "image_urls": image_urls
         }
 
         print(f"Attempting to save quote: {data}")

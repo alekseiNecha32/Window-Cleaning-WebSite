@@ -5,9 +5,9 @@ export interface QuoteData {
   lastName: string;
   email: string;
   location: string;
+  zipcode: string;
   serviceType: string;
   message?: string;
-  images?: File[];
 }
 
 export interface ContactData {
@@ -27,14 +27,10 @@ export async function submitQuote(data: QuoteData): Promise<ApiResponse> {
   formData.append('last_name', data.lastName);
   formData.append('email', data.email);
   formData.append('location', data.location);
+  formData.append('zipcode', data.zipcode);
   formData.append('service_type', data.serviceType);
   if (data.message) {
     formData.append('message', data.message);
-  }
-  if (data.images) {
-    data.images.forEach((image) => {
-      formData.append('images', image);
-    });
   }
 
   const response = await fetch(`${API_URL}/api/quotes`, {

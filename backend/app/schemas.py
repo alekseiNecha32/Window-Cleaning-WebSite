@@ -7,6 +7,7 @@ class QuoteRequest(BaseModel):
     last_name: str
     email: EmailStr
     location: str
+    zipcode: str
     service_type: str
     message: Optional[str] = None
 

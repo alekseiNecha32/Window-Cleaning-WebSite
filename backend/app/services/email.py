@@ -1,6 +1,6 @@
 import os
 from datetime import datetime
-from typing import List, Optional
+from typing import Optional
 import httpx
 from dotenv import load_dotenv
 
@@ -30,9 +30,9 @@ async def send_quote_email(
     last_name: str,
     email: str,
     location: str,
+    zipcode: str,
     service_type: str,
     message: Optional[str],
-    image_urls: List[str]
 ) -> bool:
     """Send quote notification email via EmailJS."""
     config = get_email_config()
@@ -50,14 +50,10 @@ New Quote Request
 Name: {first_name} {last_name}
 Email: {email}
 Location: {location}
+Zipcode: {zipcode}
 Service: {service_label}
 Message: {message or 'No additional details provided'}
 """
-
-        if image_urls:
-            email_message += "\nImages:\n"
-            for i, url in enumerate(image_urls, 1):
-                email_message += f"{i}. {url}\n"
 
         # EmailJS API payload
         payload = {
