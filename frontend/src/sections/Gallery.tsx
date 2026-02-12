@@ -4,6 +4,8 @@ import { useState, useCallback } from 'react';
   { before: 'before1.jpeg', after: 'after1.jpeg' },
   { before: 'before2.jpeg', after: 'after2.jpeg' },
   { before: 'before3.jpeg', after: 'after3.jpeg' },
+  { before: 'beforeAfter/before4.jpeg', after: 'beforeAfter/after4.jpeg' },
+  { before: 'beforeAfter/before5.jpeg', after: 'beforeAfter/after5.jpeg' },
 ];
 
 const workImages = [
