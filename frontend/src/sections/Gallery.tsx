@@ -129,6 +129,15 @@ export default function Gallery() {
                   controls
                   className="how-video"
                 />
+                <video
+                  src={`${import.meta.env.BASE_URL}imgs/video/4B11F186-7C8E-4BA2-BDD4-347675BA1B6C (1).MOV`}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  controls
+                  className="how-video"
+                />
               </div>
             )}
           </div>

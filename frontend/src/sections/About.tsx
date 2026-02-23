@@ -28,6 +28,14 @@ export default function About() {
 
 </p>
           </div>
+          <div className="about-member">
+            <div className="about-member-image">
+              <img src={`${import.meta.env.BASE_URL}imgs/member3.jpg`} alt="Member 3" className="about-img" />
+            </div>
+            <h3 className="about-member-name">Hayden Krebs</h3>
+            <p className="about-member-role">Pressure Washing Division Owner</p>
+            <p className="about-member-desc">A 16-year-old at Sycamore High School and the owner of the pressure washing division at Shine Bros. He's committed to quality work, values every client he serves, and takes pride in delivering consistent results on every job.</p>
+          </div>
         </div>
         <div className="about-features">
           <div className="feature">
