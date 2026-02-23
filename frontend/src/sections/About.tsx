@@ -12,7 +12,7 @@ export default function About() {
             <div className="about-member-image">
               <img src={`${import.meta.env.BASE_URL}imgs/member1.jpeg`} alt="Member 1" className="about-img" />
             </div>
-            <h3 className="about-member-name">Michael</h3>
+            <h3 className="about-member-name">Michael Laughlin</h3>
             <p className="about-member-role">Co-Owner</p>
             <p className="about-member-desc">Sophomore at Sycamore High School and a proud co-owner of Shine Bros, where he helps leads the window cleaning division. He believes in hard work, diligence, and reliability—values applied to each and every job. 
 

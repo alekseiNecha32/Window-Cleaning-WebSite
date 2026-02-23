@@ -8,20 +8,10 @@ import { useState, useCallback } from 'react';
   { before: 'beforeAfter/before5.jpeg', after: 'beforeAfter/after5.jpeg' },
 ];
 
-const workImages = [
-  'how/IMG_4361.JPG',
-  'how/IMG_3751.jpeg',
-  'how/IMG_7973.jpeg',
-  'how/IMG_3150.jpeg',
-  'how/IMG_3138.jpeg',
-  'how/IMG_3772.jpeg'
-];
-
 type ViewMode = 'beforeAfter' | 'how';
 
 export default function Gallery() {
   const [beforeAfterIndex, setBeforeAfterIndex] = useState(0);
-  const [workIndex, setWorkIndex] = useState(0);
   const [viewMode, setViewMode] = useState<ViewMode>('beforeAfter');
   const [flowing, setFlowing] = useState(false);
 
@@ -35,39 +25,28 @@ export default function Gallery() {
   }, [flowing]);
 
   const handlePrev = () => {
+    if (viewMode !== 'beforeAfter') return;
     flowTransition(() => {
-      if (viewMode === 'beforeAfter') {
-        setBeforeAfterIndex((prev) => (prev === 0 ? beforeAfterImages.length - 1 : prev - 1));
-      } else {
-        setWorkIndex((prev) => (prev === 0 ? workImages.length - 1 : prev - 1));
-      }
+      setBeforeAfterIndex((prev) => (prev === 0 ? beforeAfterImages.length - 1 : prev - 1));
     });
   };
 
   const handleNext = () => {
+    if (viewMode !== 'beforeAfter') return;
     flowTransition(() => {
-      if (viewMode === 'beforeAfter') {
-        setBeforeAfterIndex((prev) => (prev === beforeAfterImages.length - 1 ? 0 : prev + 1));
-      } else {
-        setWorkIndex((prev) => (prev === workImages.length - 1 ? 0 : prev + 1));
-      }
+      setBeforeAfterIndex((prev) => (prev === beforeAfterImages.length - 1 ? 0 : prev + 1));
     });
   };
 
   const getVisibleImages = () => {
-    const images = viewMode === 'beforeAfter'
-      ? beforeAfterImages.map((img, i) => ({ id: i, ...img }))
-      : workImages.map((img, i) => ({ id: i, src: img }));
-
-    const currentIdx = viewMode === 'beforeAfter' ? beforeAfterIndex : workIndex;
+    const images = beforeAfterImages.map((img, i) => ({ id: i, ...img }));
     const total = images.length;
-
-    const prevIdx = (currentIdx - 1 + total) % total;
-    const nextIdx = (currentIdx + 1) % total;
+    const prevIdx = (beforeAfterIndex - 1 + total) % total;
+    const nextIdx = (beforeAfterIndex + 1) % total;
 
     return {
       prev: images[prevIdx],
-      current: images[currentIdx],
+      current: images[beforeAfterIndex],
       next: images[nextIdx],
     };
   };
@@ -140,21 +119,21 @@ export default function Gallery() {
                 </div>
               </>
             ) : (
-              <>
-                <div className="carousel-slide carousel-slide-prev">
-                  <img src={`${import.meta.env.BASE_URL}imgs/${(visibleImages.prev as any).src}`} alt="Our work" />
-                </div>
-                <div className="carousel-slide carousel-slide-center">
-                  <img src={`${import.meta.env.BASE_URL}imgs/${(visibleImages.current as any).src}`} alt="Our work" />
-                </div>
-                <div className="carousel-slide carousel-slide-next">
-                  <img src={`${import.meta.env.BASE_URL}imgs/${(visibleImages.next as any).src}`} alt="Our work" />
-                </div>
-              </>
+              <div className="how-video-container">
+                <video
+                  src={`${import.meta.env.BASE_URL}imgs/video/IMG_6306.MOV`}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  controls
+                  className="how-video"
+                />
+              </div>
             )}
           </div>
 
-          <div className="carousel-arrows">
+          {viewMode === 'beforeAfter' && <div className="carousel-arrows">
             <button className="carousel-arrow" onClick={handlePrev} aria-label="Previous image">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="19" y1="12" x2="5" y2="12"></line>
@@ -167,7 +146,7 @@ export default function Gallery() {
                 <polyline points="12 5 19 12 12 19"></polyline>
               </svg>
             </button>
-          </div>
+          </div>}
         </div>
       </div>
     </section>
