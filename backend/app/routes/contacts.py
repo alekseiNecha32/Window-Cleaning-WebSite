@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 
 from app.schemas import ContactRequest, ContactResponse
-from app.services.email import send_contact_email
+from app.services.sms import send_contact_sms
 
 router = APIRouter()
 
@@ -10,7 +10,7 @@ router = APIRouter()
 async def submit_contact(request: ContactRequest):
     """Submit a contact form message."""
     try:
-        email_success = await send_contact_email(
+        send_contact_sms(
             name=request.name,
             email=request.email,
             message=request.message
