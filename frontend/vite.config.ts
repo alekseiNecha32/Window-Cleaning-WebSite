@@ -22,7 +22,7 @@ const backendEnv = loadBackendEnv()
 
 export default defineConfig({
   plugins: [react()],
-  base: '/Window-Cleaning-WebSite/',
+  base: '/',
   define: {
     'import.meta.env.VITE_EMAILJS_SERVICE_ID': JSON.stringify(backendEnv.EMAILJS_SERVICE_ID),
     'import.meta.env.VITE_EMAILJS_TEMPLATE_ID': JSON.stringify(backendEnv.EMAILJS_TEMPLATE_ID),
