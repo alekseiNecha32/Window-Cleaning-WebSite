@@ -34,7 +34,7 @@ export default function Contact({ onFormSuccess }: ContactProps) {
                 </div>
                 <div>
                   <span className="contact-label">Call us at</span>
-                  <a href="tel:+15551234567" className="contact-value">(513) 623-9293</a>
+                  <a href="tel:+15551234567" className="contact-value">(513)623-9293</a>
                 </div>
               </div>
             </div>
