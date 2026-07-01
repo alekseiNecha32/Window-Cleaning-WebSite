@@ -13,6 +13,8 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "https://window-cleaning-website-1.onrender.com",
+        "https://www.shinebrosww.com",     
+        "https://shinebrosww.com",        
         "http://localhost:5173",
         "http://127.0.0.1:5173",
     ],
